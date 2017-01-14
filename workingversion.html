@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pizza Menu</title>
+<meta charset="utf-8">
+
+<style type="text/css">
+div#form {
+width: 300px;
+float: left;
+}
+div#prices {
+float: right;
+}
+div#prices td {
+background-color: #CFC;
+margin: 10px;
+padding: 10px;
+text-align: right;
+width: 100px;
+}
+div#prices tr:last-child td {
+background-color: #090;
+color: #FFF;
+font-weight: bold;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="form">
+
+<form>
+<fieldset>
+<legend>Size</legend>
+<input type="radio" name="pizzasize" id="size0" value="size0" onchange="updateTotal()"> Small (6$) <br>
+<input type="radio" name="pizzasize" id="size1" value="size1" onchange="updateTotal()"> Medium ($10) <br>
+<input type="radio" name="pizzasize" id="size2" value="size2" onchange="updateTotal()"> Large ($14) <br>
+<input type="radio" name="pizzasize" id="size3" value="size3" onchange="updateTotal()"> Extra Large ($16) <br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>Meats (First free $1 for each additional)</legend>
+<input type="checkbox" name="toppings" id="topping0" value="topping0" onchange="updateTotal()"> Pepperoni <br>
+<input type="checkbox" name="toppings" id="topping1" value="topping1" onchange="updateTotal()"> Sausage <br>
+<input type="checkbox" name="toppings" id="topping2" value="topping2" onchange="updateTotal()"> Canadian Bacon <br>
+<input type="checkbox" name="toppings" id="topping3" value="topping3" onchange="updateTotal()"> Ground Beef <br>
+<input type="checkbox" name="toppings" id="topping4" value="topping4" onchange="updateTotal()"> Anchovy <br>
+<input type="checkbox" name="toppings" id="topping5" value="topping5" onchange="updateTotal()"> Chicken <br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>Cheese</legend>
+<input type="radio" name="cheese" id="cheese0" value="cheese0" onchange="updateTotal()"> Regular <br>
+<input type="radio" name="cheese" id="cheese1" value="cheese1" onchange="updateTotal()"> No Cheese <br>
+<input type="radio" name="cheese" id="cheese2" value="cheese2" onchange="updateTotal()"> Extra Cheese <br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>Crust</legend>
+<input type="radio" name="crust" id="crust0" value="crust0" onchange="updateTotal()"> Plain <br>
+<input type="radio" name="crust" id="crust1" value="crust1" onchange="updateTotal()"> Garlic Butter Crust <br>
+<input type="radio" name="crust" id="crust2" value="crust2" onchange="updateTotal()"> Cheese Stuffed Crust ($3)<br>
+<input type="radio" name="crust" id="crust3" value="crust3" onchange="updateTotal()"> Spicy Crust <br>
+<input type="radio" name="crust" id="crust4" value="crust4" onchange="updateTotal()"> House Special <br>
+</fieldset>
+</form>
+
+<form>
+<fieldset>
+<legend>Sauce</legend>
+<input type="radio" name="pizzasauce" id="sauce0" value="size0" onchange="updateTotal()"> No Sauce (0$) <br>
+<input type="radio" name="pizzasauce" id="sauce1" value="size1" onchange="updateTotal()"> Marinara (0) <br>
+<input type="radio" name="pizzasauce" id="sauce2" value="size2" onchange="updateTotal()"> BBQ ($0) <br>
+<input type="radio" name="pizzasauce" id="sauce3" value="size3" onchange="updateTotal()"> White ($0) <br>
+</fieldset>
+</form>
+</div>
+
+<form>
+<fieldset>
+<legend> Veggies (First free $1 for each additional)</legend>
+<input type="checkbox" name="veggies" id="veggie0" value="veggie1" onchange="updateTotal()"> Tomatoes <br>
+<input type="checkbox" name="veggies" id="veggie1" value="veggie2" onchange="updateTotal()"> Onions <br>
+<input type="checkbox" name="veggies" id="veggie2" value="veggie3" onchange="updateTotal()"> Olives <br>
+<input type="checkbox" name="veggies" id="veggie3" value="veggie4" onchange="updateTotal()"> Green Peppers <br>
+<input type="checkbox" name="veggies" id="veggie4" value="veggie5" onchange="updateTotal()"> Mushrooms <br>
+<input type="checkbox" name="veggies" id="veggie5" value="veggie6" onchange="updateTotal()"> Pineapple <br>
+<input type="checkbox" name="veggies" id="veggie6" value="veggie7" onchange="updateTotal()"> Spinach <br>
+<input type="checkbox" name="veggies" id="veggie7" value="veggie8" onchange="updateTotal()"> Jalapeno <br>
+</fieldset>
+</form>
+
+
+<div id="prices">
+<table>
+<tr><td>Size</td><td id="sizePrice"></td></tr>
+<tr><td>Toppings</td><td id="toppingPrice"></td></tr>
+<tr><td>Cheese</td><td id="cheesePrice"></td></tr>
+<tr><td>Crust</td><td id="crustPrice"></td></tr>
+<tr><td>Sauce</td><td id="saucePrice"></td></tr>
+<tr><td>Veggie</td><td id="veggiePrice"></td></tr>
+<tr><td>Total</td><td id="totalPrice"></td></tr>
+</table>
+</div>
+
+
+
+<script type="text/javascript">
+
+function updateTotal(){
+     
+      function checkSize(){
+            if (document.getElementById('size0').checked){
+            sizePrice= 6;
+            document.getElementById("sizePrice").innerHTML = "$6";
+            }
+            if (document.getElementById('size1').checked){
+            sizePrice = 10;
+            document.getElementById("sizePrice").innerHTML = "$10";
+            }
+            if (document.getElementById('size2').checked){
+            sizePrice = 14;
+            document.getElementById("sizePrice").innerHTML = "$14";
+            }
+            if (document.getElementById('size3').checked){
+            sizePrice = 16;
+            }
+      }
+    
+    function checkTopping(){
+            if (document.getElementById('topping0').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+            if (document.getElementById('topping1').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+            if (document.getElementById('topping2').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+            if (document.getElementById('topping3').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+            if (document.getElementById('topping4').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+            if (document.getElementById('topping5').checked){
+            toppingPrice= 1;
+            document.getElementById("toppingPrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice);
+            }
+      }
+    
+    function checkCheese(){
+      if (document.getElementById('cheese0').checked){
+        cheesePrice = 0;
+        document.getElementById("cheesePrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice);
+      }
+        if (document.getElementById('cheese1').checked){
+        cheesePrice = 0;
+        document.getElementById("cheesePrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice);
+      }
+        if (document.getElementById('cheese2').checked){
+        cheesePrice = 3;
+        document.getElementById("cheesePrice").innerHTML = "$3";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice);
+      }
+     }
+        
+     function checkCrust(){
+      if (document.getElementById('crust0').checked){
+        crustPrice = 0;
+        document.getElementById("crustPrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice);
+      }
+        if (document.getElementById('crust1').checked){
+        crustPrice = 0;
+        document.getElementById("crustPrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice);
+      }
+        if (document.getElementById('crust2').checked){
+        crustPrice = 3;
+        document.getElementById("crustPrice").innerHTML = "$3";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice);
+      }
+         if (document.getElementById('crust3').checked){
+        crustPrice = 0;
+        document.getElementById("cheesePrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice);
+            }
+         if (document.getElementById('crust4').checked){
+        crustPrice = 0;
+        document.getElementById("crustPrice").innerHTML = "$0";
+      document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice);
+        }
+    }
+    
+    function checkSauce(){
+            if (document.getElementById('sauce0').checked){
+            saucePrice= 0;
+            document.getElementById("saucePrice").innerHTML = "$0";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + saucePrice);
+            }
+            if (document.getElementById('sauce1').checked){
+            saucePrice = 0;
+            document.getElementById("saucePrice").innerHTML = "$0";
+            document.getElementById('totalPrice').innerHTML = "$" +(sizePrice + toppingPrice + saucePrice);
+            }
+            if (document.getElementById('sauce2').checked){
+            saucePrice = 0;
+            document.getElementById("saucePrice").innerHTML = "$0";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + saucePrice);
+            }
+            if (document.getElementById('sauce3').checked){
+            saucePrice = 0;
+            document.getElementById("saucePrice").innerHTML = "$0";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + saucePrice);
+            }
+    }
+    
+     function checkVeggie(){
+            if (document.getElementById('veggie0').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+            if (document.getElementById('veggie1').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+            if (document.getElementById('veggie2').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+            if (document.getElementById('veggie3').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+            if (document.getElementById('veggie4').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+            if (document.getElementById('veggie5').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+             if (document.getElementById('veggie6').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+             if (document.getElementById('veggie7').checked){
+            veggiePrice= 1;
+            document.getElementById("veggiePrice").innerHTML = "$1";
+            document.getElementById('totalPrice').innerHTML = "$" + (sizePrice + toppingPrice + cheesePrice + crustPrice + saucePrice + veggiePrice);
+            }
+      }
+
+
+checkTopping();
+checkSauce();    
+checkCheese();
+checkCrust();
+checkSize();
+checkVeggie();
+
+} //end of updateTotal
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
+
